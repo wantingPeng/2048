@@ -10,6 +10,7 @@ export default class Grid{
     this.cells=creatCellElements().map( (el,index)=>{boardElement.append(el) ;
       return new Cell(el,index%gridTemplate, Math.floor(index/gridTemplate) )})//通过index 定位x, y
 log(this.cells)
+    
 }
 //随机选取两个cell 并且创建tile 将tile 的x,y 设为cell 的x y
 //想要实现随机选取cell ，就意味着cell是个实列 而不是html 中的element,实例里面才有ele tile x, y 等参数

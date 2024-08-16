@@ -7,14 +7,14 @@ globalThis.log=console.log
 // class tile 需要 tileElement , value 就可以创建一个tile 实列，而x ，y 的位置信息不像cell 一样是其身上的一个特征， 而是会不断变化的变量
 const boardEle=document.querySelector('.board')
 const board=new Grid(boardEle)
-let  EmptyCell=board.randomEmptyCell()
-const TileElement = creatTileElement()
-log(new Tile(TileElement))
-EmptyCell.tile=new Tile(TileElement)
-log(EmptyCell)
+let  EmptyCell_1=board.randomEmptyCell()
+let  EmptyCell_2=board.randomEmptyCell()
 
-function creatTileElement(){
-  const Tile=document.createElement('div')
-  Tile.classList.add('Tile')
-  return Tile
-}
+/* const TileElement_1 = creatTileElement()
+const TileElement_2 = creatTileElement()
+const TileElement = creatTileElement() */
+ EmptyCell_1.tile=new Tile(boardEle)
+ EmptyCell_2.tile=new Tile(boardEle)
+log(EmptyCell_1)
+log(EmptyCell_2)
+
