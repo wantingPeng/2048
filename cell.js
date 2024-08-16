@@ -13,7 +13,6 @@ export default class Cell{
     log(this.tileobj)
     this.tileobj.x=this.x
     this.tileobj.y=this.y
-
   }
 
 
