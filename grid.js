@@ -18,9 +18,11 @@ randomEmptyCell(){
   const EmptyCells=this.cells.filter(el=>el.tile==null)//找到没有tile 的cell
   log(EmptyCells)
   //从所有的empty cells 中随机选取一个数， 返回这个数的cell
-  const selectedEmpCell=EmptyCells[Math.floor(Math.random() * EmptyCells.length)]
-log(selectedEmpCell)
+  let selectedEmpCell=EmptyCells[Math.floor(Math.random() * EmptyCells.length)]
+return selectedEmpCell
+//给这个cell 添加tile , this.tile 是cell 里面的 property 使用cell 里面的set tile() 函数来实现
 } 
+
 }
 //el=>{
 
@@ -34,4 +36,5 @@ function creatCellElements(){
   log(cellELs)
   return cellELs
 }
+
 
