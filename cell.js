@@ -10,6 +10,10 @@ export default class Cell{
   set tile(newTile){
     //给this.tile 传递 new tile ()
     this.tileobj=newTile
+    log(this.tileobj)
+    this.tileobj.x=this.x
+    this.tileobj.y=this.y
+
   }
 
 
