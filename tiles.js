@@ -3,5 +3,6 @@ export default class Tile{
   {
     this.tileElement=tileElement
     this.value=value
+    this.tile
   }
 }

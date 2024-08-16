@@ -1,5 +1,5 @@
 import Grid from "./grid.js";
-import cell from "./cell.js";
+import Cell from "./cell.js";
 import Tile from "./tiles.js";
 globalThis.log=console.log
 //可以想象有3个class grid, tile and cell  class grid, 仅需要传入一个boardElement的参数，即可创建实列
@@ -7,5 +7,5 @@ globalThis.log=console.log
 // class tile 需要 tileElement , value 就可以创建一个tile 实列，而x ，y 的位置信息不像cell 一样是其身上的一个特征， 而是会不断变化的变量
 const boardEle=document.querySelector('.board')
 const board=new Grid(boardEle)
-
+board.randomEmptyCell()
 
