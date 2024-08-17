@@ -15,5 +15,5 @@ export default class Cell{
     this.tileobj.y=this.y
   }
 
-
 }
+
