@@ -8,12 +8,13 @@ globalThis.log=console.log
 const boardEle=document.querySelector('.board')
 const board=new Grid(boardEle)
 let  EmptyCell_1=board.randomEmptyCell()
+EmptyCell_1.tile=new Tile(boardEle)
 let  EmptyCell_2=board.randomEmptyCell()
 
 /* const TileElement_1 = creatTileElement()
 const TileElement_2 = creatTileElement()
 const TileElement = creatTileElement() */
- EmptyCell_1.tile=new Tile(boardEle)
+
  EmptyCell_2.tile=new Tile(boardEle)
 log(EmptyCell_1)
 log(EmptyCell_2)

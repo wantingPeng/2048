@@ -22,7 +22,8 @@ export default class Cell{
    } 
   moveTargetTile(lastVaildCell){
     lastVaildCell.tile=this.tileobj
-    this.tileobj=null
+    this.tileobj=null 
+   
 }
   mergen(lastVaildCell){
     if (lastVaildCell.tileobj){

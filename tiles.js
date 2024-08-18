@@ -12,8 +12,8 @@ export default class Tile{
   }
 set mergenValue(value){
   this.tileElement.textContent=value
-/*   this.value=value
- */ /*  this.lightness=value */
+  this.value=value 
+ this.lightness=value 
 }
 remove(){
   this.tileElement.remove()
