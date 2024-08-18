@@ -72,8 +72,8 @@ function keybord(e){
     let lastVaildCell
   for (let j=i-1; j>=0; j--){
     const nextCell=arr[j]
-    if(nextCell.tileobj!=null&&nextCell.tileobj.value!=targetCell.tileobj.value ) break
-   lastVaildCell=nextCell
+    if(nextCell.tileobj==null||nextCell.tileobj.value==targetCell.tileobj.value&&!targetCell.tileobj.mergenMark ) lastVaildCell=nextCell
+  else break
   }
 
   //如何将targetCell的tile 移动到lastVaildCell 的位子

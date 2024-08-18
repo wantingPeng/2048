@@ -29,7 +29,7 @@ export default class Cell{
 }
 
   mergen(lastVaildCell){
-    if (lastVaildCell.tileobj && !lastVaildCell.tileobj.mergenMark ){
+    if (lastVaildCell.tileobj ){
       lastVaildCell.tileobj.mergenValue=this.tileobj.value+lastVaildCell.tileobj.value;
 /*       this.tileobj=null
  */      this.tileobj.remove()
