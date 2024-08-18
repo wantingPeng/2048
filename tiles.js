@@ -6,16 +6,19 @@ export default class Tile{
    this.tileElement.textContent=value
     container.append(this.tileElement)
     this.value=value
-    this.x
-    this.y
+    this.x=null
+    this.y=null
     this.lightness=value//call set lightness(value)
   }
-set x(xvalue){
-  this.tileElement.style.setProperty('--tileIndex-x', xvalue)
-}
-set y(yvalue){
-  this.tileElement.style.setProperty('--tileIndex-y', yvalue)
 
+
+set tile_x(xvalue){
+  this.tileElement.style.setProperty('--tileIndex-x', xvalue)
+  this.x=xvalue
+}
+set tile_y(yvalue){
+  this.tileElement.style.setProperty('--tileIndex-y', yvalue)
+  this.y=yvalue
 }
 set lightness(value){
 //Math.log2(2048) returns 11. 所以按100% 来分 11个挡位变化， 每次lightness 变9

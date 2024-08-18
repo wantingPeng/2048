@@ -7,13 +7,21 @@ export default class Cell{
     this.tileobj
   }
 
+
   set tile(newTile){
     //给this.tile 传递 new tile ()
     this.tileobj=newTile
     log(this.tileobj)
-    this.tileobj.x=this.x
-    this.tileobj.y=this.y
+    this.tileobj.tile_x=this.x
+    this.tileobj.tile_y=this.y
+  }
+
+  moveTargetTile(lastVaildCell){
+    this.tileobj.x=lastVaildCell.x
+    this.tileobj.y=lastVaildCell.y
+
   }
 
 }
+
 

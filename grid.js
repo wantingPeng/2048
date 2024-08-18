@@ -24,7 +24,6 @@ return selectedEmpCell
 //给这个cell 添加tile , this.tile 是cell 里面的 property 使用cell 里面的set tile() 函数来实现
 } 
 
-
 columnArr(){
  const  columnArr=this.cells.reduce((arrColu,currentCell)=>{
 arrColu[currentCell.x]=arrColu[currentCell.x]||[];
@@ -33,6 +32,8 @@ return arrColu
   },[])
   return columnArr
 }
+
+
 }
 //el=>{
 

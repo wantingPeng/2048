@@ -49,22 +49,25 @@ function keybord(e){
 
  addListener()
  }
- //loop 循环每个column 再循环每个cell , 拿到里面的cell， 
+ //loop 循环每个column 再循环每个cell 并且拿到里面的cell， 
  //对于每个cell, 比如cell[3] 如果cell[2]为空或同值 则还要继续检查cell[1]， cell[0], 遇到不满足条件的就立刻退出loop,
  //同时记下上一个满足条件的cell 然后移动到最后一个可到达的cell  动了之后要remove原本的tile位置，
- //
+ 
  function tileMove(columnArr){
   columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
-    const cell=arr[i]; 
-    if(cell.tileobj==null) continue 
+    const targetCell=arr[i]; 
+    if(targetCell.tileobj==null||targetCell.tileobj.y==0) continue 
     let lastVaildCell
   for (let j=i-1; j>=0; j--){
-    const targetCell=arr[j]
+    const lastCell=arr[j]
     if(!targetCell.tileobj==null) break
-   lastVaildCell=cell
-    log(lastVaildCell)
+   lastVaildCell=lastCell
   }
-  //lastVaildCell.tile=cell.tileobj
+  log(lastVaildCell)
+  //如何将targetCell的tile 移动到lastVaildCell 的位子
+  //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
+ /*  targetCell.moveTargetTile(lastVaildCell) */
+
   }
     
   })
