@@ -16,6 +16,7 @@ log(this.cells)
 //想要实现随机选取cell ，就意味着cell是个实列 而不是html 中的element,实例里面才有ele tile x, y 等参数
  //this.cells 是grid 里面的property 所以这个方程一定是method in grid , 可以在script 中通过script 调取
 randomEmptyCell(){
+  log(this.cells)
   const EmptyCells=this.cells.filter(el=>el.tileobj==null)//找到没有tile 的cell
   log(EmptyCells)
   //从所有的empty cells 中随机选取一个数， 返回这个数的cell

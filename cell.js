@@ -30,6 +30,8 @@ export default class Cell{
       lastVaildCell.tileobj.mergenValue=this.tileobj.value+lastVaildCell.tileobj.value;
 /*       this.tileobj=null
  */      this.tileobj.remove()
+ this.tileobj=null 
+
 return  true
 
     }

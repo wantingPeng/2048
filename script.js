@@ -11,13 +11,14 @@ let  EmptyCell_1=board.randomEmptyCell()
 EmptyCell_1.tile=new Tile(boardEle)
 let  EmptyCell_2=board.randomEmptyCell()
 
+
+
 /* const TileElement_1 = creatTileElement()
 const TileElement_2 = creatTileElement()
 const TileElement = creatTileElement() */
 
  EmptyCell_2.tile=new Tile(boardEle)
-log(EmptyCell_1)
-log(EmptyCell_2)
+
 
 //add 一次性eventlistener an keydown, 按下上下左右键则执行tileMove()方程， 如果其他键则再次调用监听  
 //想要移动，则必须拿到2*2的cell 的数组，这样tile 才能四周移动
@@ -36,7 +37,8 @@ const rowArrArr=board.rowArr()
 
 function keybord(e){
 
- log(e.key)
+
+
  switch(e.key){
  case 'ArrowUp':{ tileMove(columnArr)} break
  case 'ArrowDown':{ tileMove(columnArr.map(el=>[...el].reverse()))
@@ -50,12 +52,16 @@ function keybord(e){
   {addListener()
   return}
  }
+ let  randomCell=board.randomEmptyCell()
+  randomCell.tile=new Tile(boardEle)
  addListener()
  }
  //loop 循环每个column 再循环每个cell 并且拿到里面的cell， 
  //对于每个cell, 比如cell[3] 如果cell[2]为空或同值 则还要继续检查cell[1]， cell[0], 遇到不满足条件的就立刻退出loop,
  //同时记下上一个满足条件的cell 然后移动到最后一个可到达的cell  动了之后要remove原本的tile位置，
- 
+
+
+
  function tileMove(columnArr){
   columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
   
@@ -68,7 +74,6 @@ function keybord(e){
    lastVaildCell=nextCell
   }
 
-  log(lastVaildCell)
   //如何将targetCell的tile 移动到lastVaildCell 的位子
   //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
   if (lastVaildCell==null){
