@@ -38,15 +38,17 @@ function keybord(e){
  log(e.key)
  switch(e.key){
  case 'ArrowUp':{ tileMove(columnArr)} break
- case 'Arrowdown':{ tileMove(columnArr)} break
- case 'Arrowleft':{ tileMove(columnArr)}break
- case 'Arrowright':{ tileMove(columnArr)}break
- default:
+ case 'ArrowDown':{ tileMove(columnArr.map(el=>[...el].reverse()))
+  log(columnArr)
   addListener()
-  return
+
+ } break
+ case 'ArrowLeft':{ tileMove(columnArr,)}break
+ case 'ArrowRight':{ tileMove(columnArr)}break
+ default:
+  {addListener()
+  return}
  }
-
-
  addListener()
  }
  //loop 循环每个column 再循环每个cell 并且拿到里面的cell， 
@@ -54,9 +56,10 @@ function keybord(e){
  //同时记下上一个满足条件的cell 然后移动到最后一个可到达的cell  动了之后要remove原本的tile位置，
  
  function tileMove(columnArr){
+  log(columnArr)
   columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
     const targetCell=arr[i]; 
-    if(targetCell.tileobj==null||targetCell.tileobj.y==0) continue 
+    if(targetCell.tileobj==null||targetCell.tileobj.y==arr[0].y) continue 
     let lastVaildCell
   for (let j=i-1; j>=0; j--){
     const lastCell=arr[j]
@@ -66,8 +69,9 @@ function keybord(e){
   log(lastVaildCell)
   //如何将targetCell的tile 移动到lastVaildCell 的位子
   //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
- /*  targetCell.moveTargetTile(lastVaildCell) */
-
+  targetCell.moveTargetTile(lastVaildCell) 
+  log(targetCell)
+  log(lastVaildCell)
   }
     
   })

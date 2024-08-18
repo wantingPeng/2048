@@ -17,9 +17,11 @@ export default class Cell{
   }
 
   moveTargetTile(lastVaildCell){
-    this.tileobj.x=lastVaildCell.x
-    this.tileobj.y=lastVaildCell.y
-
+  /*  this.tileobj.tile_x=lastVaildCell.x
+    this.tileobj.tile_y=lastVaildCell.y 
+ */
+    lastVaildCell.tile=this.tileobj
+    this.tileobj=null
   }
 
 }
