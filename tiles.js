@@ -1,4 +1,5 @@
 export default class Tile{
+  #mergenMark=false
   constructor(container, value=Math.random()>0.5?2:4)
   { 
    this.tileElement=document.createElement('div')
@@ -19,6 +20,14 @@ remove(){
   this.tileElement.remove()
  
  } 
+
+ set mergenMark(value){
+  this.#mergenMark=value
+}
+get mergenMark(){
+return this.#mergenMark
+}
+
 set content(value){
   this.tileElement.textContent=value
 }

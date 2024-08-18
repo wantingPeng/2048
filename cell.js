@@ -1,10 +1,12 @@
 
 export default class Cell{
+
   constructor(cellElement, x, y){
     this.cellElement=cellElement
     this.x=x;
     this.y=y
     this.tileobj
+    
   }
 
 
@@ -25,12 +27,14 @@ export default class Cell{
     this.tileobj=null 
    
 }
+
   mergen(lastVaildCell){
-    if (lastVaildCell.tileobj){
+    if (lastVaildCell.tileobj && !lastVaildCell.tileobj.mergenMark ){
       lastVaildCell.tileobj.mergenValue=this.tileobj.value+lastVaildCell.tileobj.value;
 /*       this.tileobj=null
  */      this.tileobj.remove()
- this.tileobj=null 
+          this.tileobj=null 
+          lastVaildCell.tileobj.mergenMark=true
 
 return  true
 

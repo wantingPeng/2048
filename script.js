@@ -37,8 +37,6 @@ const rowArrArr=board.rowArr()
 
 function keybord(e){
 
-
-
  switch(e.key){
  case 'ArrowUp':{ tileMove(columnArr)} break
  case 'ArrowDown':{ tileMove(columnArr.map(el=>[...el].reverse()))
@@ -52,8 +50,11 @@ function keybord(e){
   {addListener()
   return}
  }
+
+
  let  randomCell=board.randomEmptyCell()
   randomCell.tile=new Tile(boardEle)
+
  addListener()
  }
  //loop 循环每个column 再循环每个cell 并且拿到里面的cell， 
@@ -63,6 +64,7 @@ function keybord(e){
 
 
  function tileMove(columnArr){
+
   columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
   
     const targetCell=arr[i]; 
@@ -86,5 +88,7 @@ continue
   log(targetCell)
   log(lastVaildCell)
   }   
-  })
+  columnArr.forEach(arr=>arr.forEach(cell =>{ if (cell.tileobj)cell.tileobj.mergenMark=false}))
+    
+ })
  } 
