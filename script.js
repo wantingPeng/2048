@@ -63,17 +63,22 @@ function keybord(e){
     let lastVaildCell
   for (let j=i-1; j>=0; j--){
     const nextCell=arr[j]
-    if(nextCell.tileobj!=null) break
+    if(nextCell.tileobj!=null&&nextCell.tileobj.value!=targetCell.tileobj.value ) break
    lastVaildCell=nextCell
   }
+
   log(lastVaildCell)
   //如何将targetCell的tile 移动到lastVaildCell 的位子
   //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
   if (lastVaildCell==null){
 continue
-  }else targetCell.moveTargetTile(lastVaildCell) 
+  }else if(!targetCell.mergen(lastVaildCell)){ 
+   
+
+    targetCell.moveTargetTile(lastVaildCell)
+  }
   log(targetCell)
   log(lastVaildCell)
   }   
   })
- }
+ } 

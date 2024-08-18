@@ -10,8 +10,18 @@ export default class Tile{
     this.y=null
     this.lightness=value//call set lightness(value)
   }
-
-
+set mergenValue(value){
+  this.tileElement.textContent=value
+/*   this.value=value
+ */ /*  this.lightness=value */
+}
+remove(){
+  this.tileElement.remove()
+ 
+ } 
+set content(value){
+  this.tileElement.textContent=value
+}
 set tile_x(xvalue){
   this.tileElement.style.setProperty('--tileIndex-x', xvalue)
   this.x=xvalue

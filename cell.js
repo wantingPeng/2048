@@ -10,15 +10,32 @@ export default class Cell{
 
   set tile(newTile){
     //给this.tile 传递 new tile ()
-    this.tileobj=newTile
-    log(this.tileobj)
-    this.tileobj.tile_x=this.x
-    this.tileobj.tile_y=this.y
+  this.tileobj=newTile 
+  this.tileobj.tile_x= this.x
+  this.tileobj.tile_y= this.y
+
   }
 
+  remove(){
+    this.tileobj
+   
+   } 
   moveTargetTile(lastVaildCell){
     lastVaildCell.tile=this.tileobj
     this.tileobj=null
+}
+  mergen(lastVaildCell){
+    if (lastVaildCell.tileobj){
+      lastVaildCell.tileobj.mergenValue=this.tileobj.value+lastVaildCell.tileobj.value;
+/*       this.tileobj=null
+ */      this.tileobj.remove()
+return  true
+
+    }
+    else return  false
+
+
+
   }
 
 }
