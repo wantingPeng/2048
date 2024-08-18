@@ -31,7 +31,7 @@ window.addEventListener('keydown', keybord)
 //{once:true}
 //我要将原来的一维数组变成二维数组，并且每个coulum 为一个arr
 const columnArr=board.columnArr()
-
+const rowArrArr=board.rowArr()
 
 function keybord(e){
 
@@ -39,12 +39,12 @@ function keybord(e){
  switch(e.key){
  case 'ArrowUp':{ tileMove(columnArr)} break
  case 'ArrowDown':{ tileMove(columnArr.map(el=>[...el].reverse()))
-  log(columnArr)
-  addListener()
 
  } break
- case 'ArrowLeft':{ tileMove(columnArr,)}break
- case 'ArrowRight':{ tileMove(columnArr)}break
+ case 'ArrowLeft':{ tileMove(rowArrArr)
+
+ }break
+ case 'ArrowRight':{ tileMove(rowArrArr.map(el=>[...el].reverse()))}break
  default:
   {addListener()
   return}
@@ -56,23 +56,24 @@ function keybord(e){
  //同时记下上一个满足条件的cell 然后移动到最后一个可到达的cell  动了之后要remove原本的tile位置，
  
  function tileMove(columnArr){
-  log(columnArr)
   columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
+  
     const targetCell=arr[i]; 
-    if(targetCell.tileobj==null||targetCell.tileobj.y==arr[0].y) continue 
+    if(targetCell.tileobj==null) continue 
     let lastVaildCell
   for (let j=i-1; j>=0; j--){
-    const lastCell=arr[j]
-    if(!targetCell.tileobj==null) break
-   lastVaildCell=lastCell
+    const nextCell=arr[j]
+    if(nextCell.tileobj!=null) break
+   lastVaildCell=nextCell
   }
   log(lastVaildCell)
   //如何将targetCell的tile 移动到lastVaildCell 的位子
   //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
-  targetCell.moveTargetTile(lastVaildCell) 
+  if (lastVaildCell==null){
+continue
+  }else targetCell.moveTargetTile(lastVaildCell) 
   log(targetCell)
   log(lastVaildCell)
-  }
-    
+  }   
   })
  }

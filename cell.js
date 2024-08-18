@@ -17,9 +17,6 @@ export default class Cell{
   }
 
   moveTargetTile(lastVaildCell){
-  /*  this.tileobj.tile_x=lastVaildCell.x
-    this.tileobj.tile_y=lastVaildCell.y 
- */
     lastVaildCell.tile=this.tileobj
     this.tileobj=null
   }

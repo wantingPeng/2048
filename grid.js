@@ -32,7 +32,14 @@ return arrColu
   },[])
   return columnArr
 }
-
+rowArr(){
+  const  rowArrArr=this.cells.reduce((arrColu,currentCell)=>{
+ arrColu[currentCell.y]=arrColu[currentCell.y]||[];
+ arrColu[currentCell.y][currentCell.x]=currentCell
+ return arrColu
+   },[])
+   return rowArrArr
+ }
 
 }
 //el=>{
