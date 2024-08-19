@@ -49,4 +49,6 @@ left:calc(var(--board-padding) + var(--tileIndex-x) * (var(--cell-size) + var(--
 border-radius:var(--border-radius);
 font-weight: bold;
 font-size: larger;
-background-color: hsl(200, 25%, var(--lightness));}
+background-color: hsl(200, 25%, var(--lightness));
+transition:top .5s ease,left .5 sease,background-color .5s ease;
+}

@@ -60,7 +60,7 @@ function keybord(e){
  //同时记下上一个满足条件的cell 然后移动到最后一个可到达的cell  动了之后要remove原本的tile位置，
 
  function tileMove(columnArr){
-  let  flag= false
+  let  callRandomCellFlag= false
 
   columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
     const targetCell=arr[i]; 
@@ -68,7 +68,7 @@ function keybord(e){
     let lastVaildCell
   for (let j=i-1; j>=0; j--){
     const nextCell=arr[j]
-    if(nextCell.tileobj==null||nextCell.tileobj.value==targetCell.tileobj.value&&!targetCell.tileobj.mergenMark ) {lastVaildCell=nextCell;flag=true}
+    if(nextCell.tileobj==null||nextCell.tileobj.value==targetCell.tileobj.value&&!targetCell.tileobj.mergenMark ) {lastVaildCell=nextCell;callRandomCellFlag=true}
   else break
   }
 
@@ -87,10 +87,9 @@ continue
   columnArr.forEach(arr=>arr.forEach(cell =>{ if (cell.tileobj)cell.tileobj.mergenMark=false}))
     
  })
-if (flag){
+if (callRandomCellFlag){
   let  randomCell=board.randomEmptyCell()
   randomCell.tile=new Tile(boardEle)
-
-}
+}else if (!callRandomCellFlag && board.cells.every(cell=> cell.tileobj!=null))(alert ('you lose'))
 
  } 
