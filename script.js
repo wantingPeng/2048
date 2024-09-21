@@ -1,95 +1,114 @@
 import Grid from "./grid.js";
 import Cell from "./cell.js";
 import Tile from "./tiles.js";
-globalThis.log=console.log
-//可以想象有3个class grid, tile and cell  class grid, 仅需要传入一个boardElement的参数，即可创建实列
-//class cell  需要 cellelement 的参数，另外还有 x y 的位置特征信息即可即可创建一个cell实列
-// class tile 需要 tileElement , value 就可以创建一个tile 实列，而x ，y 的位置信息不像cell 一样是其身上的一个特征， 而是会不断变化的变量
-const boardEle=document.querySelector('.board')
-const board=new Grid(boardEle)
-let  EmptyCell_1=board.randomEmptyCell()
-EmptyCell_1.tile=new Tile(boardEle)
-let  EmptyCell_2=board.randomEmptyCell()
-
-
+globalThis.log = console.log;
+////You can imagine there are 3 class grids, tile and cell class grids, and you only need to pass in a boardElement parameter to create a real instanse
+//Class cell requires the cellelement parameter, as well as the x and y position feature information to create a cell instance.
+//The class tile requires tileElement and value to create a tile instance. The x and y position information is not a feature of the cell, but a variable that changes continuously.
+const boardEle = document.querySelector(".board");
+const board = new Grid(boardEle);
+let EmptyCell_1 = board.randomEmptyCell();
+EmptyCell_1.tile = new Tile(boardEle);
+let EmptyCell_2 = board.randomEmptyCell();
 
 /* const TileElement_1 = creatTileElement()
 const TileElement_2 = creatTileElement()
 const TileElement = creatTileElement() */
 
- EmptyCell_2.tile=new Tile(boardEle)
+EmptyCell_2.tile = new Tile(boardEle);
 
+//add a one-time eventlistener an keydown, press the up, down, left, and right keys to execute the tileMove() equation, if other keys are pressed, call the listener again
+//If you want to move, you must get the 2*2 cell array so that the tile can move around
+//tileMove(): press arrowup to move all tiles upwards, if there is a tile above, do not move, if there is a tile above but the tile.value is the same as the tile.value of this verification, merge
+//For moving upwards, I need to get the column array, loop through each column and then loop through the cells in each column, cell[1], cell[2], dell[3],
+//For cell[3], if cell[2] is empty or has the same value, move, and continue to check cell[1], cell[0], move to the last reachable cell, and remove the original tile position after moving,
+addListener();
 
-//add 一次性eventlistener an keydown, 按下上下左右键则执行tileMove()方程， 如果其他键则再次调用监听  
-//想要移动，则必须拿到2*2的cell 的数组，这样tile 才能四周移动
-//tileMove()： 按下arrowup 所有tile 向上移动， 如果上面有tile 则不移动 ， 如果上面有tile 但是tile.value 和本次验证的tile.value 相同 则mergen
-//按向上移动来说， 我需要拿到column 的数组， loop 循环每个column 再循环每个column 里面的cell, cell[1], cell[2], dell[3]，
-//对于cell[3] 如果cell[2]为空或同值 则动，还要继续检查cell[1]， cell[0] ，移动到最后一个可到达的cell  动了之后要remove原本的tile位置， 
- addListener()
-
-function addListener(){
-window.addEventListener('keydown', keybord)
+function addListener() {
+  window.addEventListener("keydown", keybord);
 }
 //{once:true}
-//我要将原来的一维数组变成二维数组，并且每个coulum 为一个arr
-const columnArr=board.columnArr()
-const rowArrArr=board.rowArr()
+////I want to convert the original one-dimensional array into a two-dimensional array, and each coulum is an arr
+const columnArr = board.columnArr();
+const rowArrArr = board.rowArr();
 
-function keybord(e){
-
- switch(e.key){
- case 'ArrowUp':{ tileMove(columnArr)} break
- case 'ArrowDown':{ tileMove(columnArr.map(el=>[...el].reverse()))
-
- } break
- case 'ArrowLeft':{ tileMove(rowArrArr)
-
- }break
- case 'ArrowRight':{ tileMove(rowArrArr.map(el=>[...el].reverse()))}break
- default:
-  {addListener()
-  return}
- }
-
-
- addListener()
- }
-
- //loop 循环每个column 再循环每个cell 并且拿到里面的cell， 
- //对于每个cell, 比如cell[3] 如果cell[2]为空或同值 则还要继续检查cell[1]， cell[0], 遇到不满足条件的就立刻退出loop,
- //同时记下上一个满足条件的cell 然后移动到最后一个可到达的cell  动了之后要remove原本的tile位置，
-
- function tileMove(columnArr){
-  let  callRandomCellFlag= false
-
-  columnArr.forEach(arr => {for(let i=0;i<arr.length ;i++){
-    const targetCell=arr[i]; 
-    if(targetCell.tileobj==null) continue 
-    let lastVaildCell
-  for (let j=i-1; j>=0; j--){
-    const nextCell=arr[j]
-    if(nextCell.tileobj==null||nextCell.tileobj.value==targetCell.tileobj.value&&!targetCell.tileobj.mergenMark ) {lastVaildCell=nextCell;callRandomCellFlag=true}
-  else break
+function keybord(e) {
+  switch (e.key) {
+    case "ArrowUp":
+      {
+        tileMove(columnArr);
+      }
+      break;
+    case "ArrowDown":
+      {
+        tileMove(columnArr.map((el) => [...el].reverse()));
+      }
+      break;
+    case "ArrowLeft":
+      {
+        tileMove(rowArrArr);
+      }
+      break;
+    case "ArrowRight":
+      {
+        tileMove(rowArrArr.map((el) => [...el].reverse()));
+      }
+      break;
+    default: {
+      addListener();
+      return;
+    }
   }
 
-  //如何将targetCell的tile 移动到lastVaildCell 的位子
-  //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
-  if (lastVaildCell==null){
-continue
-  }else if(!targetCell.mergen(lastVaildCell)){ 
-   
+  addListener();
+}
 
-    targetCell.moveTargetTile(lastVaildCell)
-  }
-  log(targetCell)
-  log(lastVaildCell)
-  }   
-  columnArr.forEach(arr=>arr.forEach(cell =>{ if (cell.tileobj)cell.tileobj.mergenMark=false}))
-    
- })
-if (callRandomCellFlag){
-  let  randomCell=board.randomEmptyCell()
-  randomCell.tile=new Tile(boardEle)
-}else if (!callRandomCellFlag && board.cells.every(cell=> cell.tileobj!=null))(alert ('you lose'))
+//loop loops through each column and then loops through each cell and gets the cell inside,
+//For each cell, for example, cell[3] if cell[2] is empty or has the same value, then continue to check cell[1], cell[0], and immediately exit the loop if the condition is not met,
+//At the same time, remember the last cell that meets the condition and then move to the last reachable cell. After moving, remove the original tile position,
 
- } 
+function tileMove(columnArr) {
+  let callRandomCellFlag = false;
+
+  columnArr.forEach((arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      const targetCell = arr[i];
+      if (targetCell.tileobj == null) continue;
+      let lastVaildCell;
+      for (let j = i - 1; j >= 0; j--) {
+        const nextCell = arr[j];
+        if (
+          nextCell.tileobj == null ||
+          (nextCell.tileobj.value == targetCell.tileobj.value &&
+            !targetCell.tileobj.mergenMark)
+        ) {
+          lastVaildCell = nextCell;
+          callRandomCellFlag = true;
+        } else break;
+      }
+
+      ////How to move the targetCell's tile to the position of the lastVaildCell
+      //soulution, targetCell.tileobj.x=lastVaildCell..tileobj.x
+      if (lastVaildCell == null) {
+        continue;
+      } else if (!targetCell.mergen(lastVaildCell)) {
+        targetCell.moveTargetTile(lastVaildCell);
+      }
+      log(targetCell);
+      log(lastVaildCell);
+    }
+    columnArr.forEach((arr) =>
+      arr.forEach((cell) => {
+        if (cell.tileobj) cell.tileobj.mergenMark = false;
+      })
+    );
+  });
+  if (callRandomCellFlag) {
+    let randomCell = board.randomEmptyCell();
+    randomCell.tile = new Tile(boardEle);
+  } else if (
+    !callRandomCellFlag &&
+    board.cells.every((cell) => cell.tileobj != null)
+  )
+    alert("you lose");
+}

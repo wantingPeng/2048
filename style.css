@@ -18,6 +18,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .board{
  background-color: #CCC;
@@ -39,6 +40,7 @@ border-radius:var(--border-radius);
 .tile{
 
   width:var(--cell-size);
+  
 height: var(--cell-size);
 position: absolute;
 display: flex;
