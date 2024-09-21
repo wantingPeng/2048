@@ -6,16 +6,16 @@ globalThis.log = console.log;
 //Class cell requires the cellelement parameter, as well as the x and y position feature information to create a cell instance.
 //The class tile requires tileElement and value to create a tile instance. The x and y position information is not a feature of the cell, but a variable that changes continuously.
 const boardEle = document.querySelector(".board");
-const board = new Grid(boardEle);
+const board = new Grid(boardEle as HTMLElement);
 let EmptyCell_1 = board.randomEmptyCell();
-EmptyCell_1.tile = new Tile(boardEle);
+(EmptyCell_1 as Cell).tile = new Tile(boardEle);
 let EmptyCell_2 = board.randomEmptyCell();
 
 /* const TileElement_1 = creatTileElement()
 const TileElement_2 = creatTileElement()
 const TileElement = creatTileElement() */
 
-EmptyCell_2.tile = new Tile(boardEle);
+(EmptyCell_2 as Cell).tile = new Tile(boardEle);
 
 //add a one-time eventlistener an keydown, press the up, down, left, and right keys to execute the tileMove() equation, if other keys are pressed, call the listener again
 //If you want to move, you must get the 2*2 cell array so that the tile can move around
@@ -32,7 +32,7 @@ function addListener() {
 const columnArr = board.columnArr();
 const rowArrArr = board.rowArr();
 
-function keybord(e) {
+function keybord(e: KeyboardEvent) {
   switch (e.key) {
     case "ArrowUp":
       {
@@ -67,14 +67,14 @@ function keybord(e) {
 //For each cell, for example, cell[3] if cell[2] is empty or has the same value, then continue to check cell[1], cell[0], and immediately exit the loop if the condition is not met,
 //At the same time, remember the last cell that meets the condition and then move to the last reachable cell. After moving, remove the original tile position,
 
-function tileMove(columnArr) {
+function tileMove(columnArr: Cell[][]) {
   let callRandomCellFlag = false;
 
   columnArr.forEach((arr) => {
     for (let i = 0; i < arr.length; i++) {
       const targetCell = arr[i];
       if (targetCell.tileobj == null) continue;
-      let lastVaildCell;
+      let lastVaildCell: Cell | undefined; // down if (lastVaildCell == null)
       for (let j = i - 1; j >= 0; j--) {
         const nextCell = arr[j];
         if (
@@ -94,8 +94,8 @@ function tileMove(columnArr) {
       } else if (!targetCell.mergen(lastVaildCell)) {
         targetCell.moveTargetTile(lastVaildCell);
       }
-      log(targetCell);
-      log(lastVaildCell);
+      /*      log(targetCell);
+      log(lastVaildCell); */
     }
     columnArr.forEach((arr) =>
       arr.forEach((cell) => {
@@ -105,7 +105,7 @@ function tileMove(columnArr) {
   });
   if (callRandomCellFlag) {
     let randomCell = board.randomEmptyCell();
-    randomCell.tile = new Tile(boardEle);
+    (randomCell as Cell).tile = new Tile(boardEle);
   } else if (
     !callRandomCellFlag &&
     board.cells.every((cell) => cell.tileobj != null)
