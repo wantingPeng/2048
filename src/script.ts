@@ -1,21 +1,25 @@
 import Grid from "./grid.js";
 import Cell from "./cell.js";
 import Tile from "./tiles.js";
-globalThis.log = console.log;
-////You can imagine there are 3 class grids, tile and cell class grids, and you only need to pass in a boardElement parameter to create a real instanse
+
+/* globalThis.log = console.log;
+
+
+
+ */ ////You can imagine there are 3 class grids, tile and cell class grids, and you only need to pass in a boardElement parameter to create a real instanse
 //Class cell requires the cellelement parameter, as well as the x and y position feature information to create a cell instance.
 //The class tile requires tileElement and value to create a tile instance. The x and y position information is not a feature of the cell, but a variable that changes continuously.
 const boardEle = document.querySelector(".board");
 const board = new Grid(boardEle as HTMLElement);
 let EmptyCell_1 = board.randomEmptyCell();
-(EmptyCell_1 as Cell).tile = new Tile(boardEle);
+(EmptyCell_1 as Cell).tile = new Tile(boardEle as HTMLElement);
 let EmptyCell_2 = board.randomEmptyCell();
 
 /* const TileElement_1 = creatTileElement()
 const TileElement_2 = creatTileElement()
 const TileElement = creatTileElement() */
 
-(EmptyCell_2 as Cell).tile = new Tile(boardEle);
+(EmptyCell_2 as Cell).tile = new Tile(boardEle as HTMLElement);
 
 //add a one-time eventlistener an keydown, press the up, down, left, and right keys to execute the tileMove() equation, if other keys are pressed, call the listener again
 //If you want to move, you must get the 2*2 cell array so that the tile can move around
@@ -105,7 +109,7 @@ function tileMove(columnArr: Cell[][]) {
   });
   if (callRandomCellFlag) {
     let randomCell = board.randomEmptyCell();
-    (randomCell as Cell).tile = new Tile(boardEle);
+    (randomCell as Cell).tile = new Tile(boardEle as HTMLElement);
   } else if (
     !callRandomCellFlag &&
     board.cells.every((cell) => cell.tileobj != null)

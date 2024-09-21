@@ -10,7 +10,7 @@ export default class Cell {
     this.cellElement = cellElement;
     this.x = x;
     this.y = y;
-    this.tileobj;
+    this.tileobj = null;
   }
 
   set tile(newTile: Tile) {

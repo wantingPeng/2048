@@ -17,16 +17,16 @@ export default class Grid {
         Math.floor(index / gridTemplate)
       );
     }); //Locate x, y by index
-    log(this.cells);
+    /*  log(this.cells); */
   }
   //Randomly select two cells and create a tile. Set the x and y of the tile to the x and y of the cell.
   //To achieve random selection of cells, it means that the cell is an actual column rather than an element in HTML, where there are parameters such as element tile x, y, etc.
   ////this.cells is a property in grid so this equation must be a method in grid and can be called in script
   randomEmptyCell(): Cell | undefined {
-    log(this.cells);
+    /*   log(this.cells); */
     const EmptyCells: Cell[] = this.cells.filter((el) => el.tileobj == null); ////Find the cell without tile
-    log(EmptyCells);
-    //Randomly select a number from all empty cells and return the cell with this number
+    /*     log(EmptyCells);
+     */ //Randomly select a number from all empty cells and return the cell with this number
     let selectedEmpCell =
       EmptyCells[Math.floor(Math.random() * EmptyCells.length)];
 
@@ -65,6 +65,6 @@ function creatCellElements() {
     cellEL.classList.add("cell");
     cellELs.push(cellEL);
   }
-  log(cellELs);
-  return cellELs;
+  /*   log(cellELs);
+   */ return cellELs;
 }
